@@ -52,44 +52,53 @@ class FilterItem extends StatelessWidget {
   });
 
   Text getCountries (){
-    print(countries);
     String country = countries.join(", ");
     return Text("Countries: $country", style: TextS);
   }
 
   Text getColors (){
-    print(colors);
     String color = colors.join(", ");
     return Text("Colors: $color", style: TextS);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150.0,
-      child: GestureDetector(
-        child: Card(
-          child: Padding(
-            padding:  EdgeInsets.only(left: 12.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text("Range: $startYear - $endYear", style: TextS,),
-                gender == null ? Text("Gender: all", style: TextS) : Text("Gender: $gender", style: TextS),
-                countries.isEmpty ? Text("Countries: all", style: TextS) : getCountries(),
-                colors.isEmpty ? Text("Colors: all", style: TextS) : getColors()
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        InkWell(
+          onTap: (){
+            print("tapped");
+          },
+          child: Container(
+            margin: EdgeInsets.all(8.0),
+            height: 150.0,
+            width: double.infinity,
+            child: Padding(
+              padding:  EdgeInsets.only(left: 12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text("Range: $startYear - $endYear", style: TextS,),
+                  gender == "" ? Text("Gender: all", style: TextS) : Text("Gender: $gender", style: TextS),
+                  countries.isEmpty ? Text("Countries: all", style: TextS) : getCountries(),
+                  colors.isEmpty ? Text("Colors: all", style: TextS) : getColors()
+                ],
+              ),
             ),
           ),
         ),
-      ),
+        Divider(
+          color: Theme.of(context).accentColor,
+        )
+      ],
     );
   }
 }
 
 TextStyle TextS = TextStyle(
-  fontSize: 10.0,
+  fontSize: 13.0,
   fontWeight: FontWeight.bold,
   color: Colors.black
 );

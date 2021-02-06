@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget{
       home: new HomePage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Color(0xFF202020),
+          primaryColor: Color(0xFF101010),
           accentColor: Color(0xFFE5E5E5)
       ),
     );
@@ -29,30 +29,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
+      body: NestedScrollView(
+        body: FilterPage(),
+        headerSliverBuilder: (context, isOk){
+          return <Widget>[
           SliverAppBar(
-            expandedHeight: 250.0,
-            floating: false,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset("assets/images/car.jpg", fit: BoxFit.cover,),
-              title: Text(
-                'Select a Filter: ',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
+                expandedHeight: 250.0,
+                floating: false,
+                pinned: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset("assets/images/car.jpg", fit: BoxFit.cover,),
+                  title: Text(
+                    'Select a Filter: ',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+
                 ),
               ),
-            ),
-          ),
-          SliverFillRemaining(
-            child: FilterPage(),
-          )
-        ],
-      ),
-
+          ];
+        },
+      )
     );
   }
 }

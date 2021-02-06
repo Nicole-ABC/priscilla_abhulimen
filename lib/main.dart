@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:priscilla_abhulimen/pages/filter_page.dart';
 
-void main () => runApp(MyApp());
+void main () async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget{
   //root of the app
@@ -26,6 +31,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(

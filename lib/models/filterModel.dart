@@ -5,7 +5,7 @@
 import 'dart:convert';
 
 List<Filter> filterFromJson(var str) =>
-    List<Filter>.from(json.decode(str).map((x) => Filter.fromJson(x)));
+    List<Filter>.from(str.map((x) => Filter.fromJson(x)));
 
 
 

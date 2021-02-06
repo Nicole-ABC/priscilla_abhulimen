@@ -5,7 +5,6 @@ void main () => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
   //root of the app
-  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget{
       home: new HomePage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Color(0xFF7ECBE4),
+          primaryColor: Color(0xFF202020),
           accentColor: Color(0xFFE5E5E5)
       ),
     );
@@ -30,30 +29,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text("Filters"),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: 250.0,
+            floating: false,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset("assets/images/car.jpg", fit: BoxFit.cover,),
+              title: Text(
+                'Select a Filter: ',
+                style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ),
+          SliverFillRemaining(
+            child: FilterPage(),
+          )
+        ],
       ),
-      body: FilterPage(),
-      // new ListView.builder(
-      //     itemCount: 1,
-      //     itemBuilder: (BuildContext context, int index){
-      //       return new Container(
-      //         child: new Center(
-      //           child: new Column(
-      //             crossAxisAlignment:  CrossAxisAlignment.stretch,
-      //             children: <Widget>[
-      //               new Card(
-      //                 child: new Container(
-      //                   child: new Text("Hello"),
-      //                   padding: const EdgeInsets.all(20.0),
-      //                 ),
-      //               )
-      //             ],
-      //           ),
-      //         ),
-      //       );
-      //     }
-      // ),
+
     );
   }
 }

@@ -17,7 +17,7 @@ class _FilterPageState extends State<FilterPage> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
-            return Text('Error');
+            return Container(height:150.0 ,child: Center(child: Text('Oops, an error has occured.')));
           } else if (!snapshot.hasData) {
             return Center(
               child: Container(

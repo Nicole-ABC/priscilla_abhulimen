@@ -30,30 +30,32 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: NestedScrollView(
+        body: Scrollbar(
+          child: NestedScrollView(
       body: FilterPage(),
       headerSliverBuilder: (context, isOk) {
-        return <Widget>[
-          SliverAppBar(
-            expandedHeight: 250.0,
-            floating: false,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/car.jpg",
-                fit: BoxFit.cover,
-              ),
-              title: Text(
-                'Select a Filter: ',
-                style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 250.0,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.asset(
+                  "assets/images/car.jpg",
+                  fit: BoxFit.cover,
+                ),
+                title: Text(
+                  'Select a Filter: ',
+                  style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-        ];
+          ];
       },
-    ));
+    ),
+        ));
   }
 }

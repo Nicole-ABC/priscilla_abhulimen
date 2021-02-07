@@ -119,7 +119,7 @@ class FilterItem extends StatelessWidget {
                     builder: (context) => CarOwnerPage(
                         startYear: startYear,
                         endYear: endYear,
-                        gender: gender,
+                        genders: gender,
                         colors: colors,
                         countries: countries)));
           },
@@ -152,6 +152,7 @@ class FilterItem extends StatelessWidget {
           ),
         ),
         Divider(
+          thickness: 4.0,
           color: Theme.of(context).accentColor,
         )
       ],
@@ -162,4 +163,4 @@ class FilterItem extends StatelessWidget {
 TextStyle TextS = TextStyle(
     fontSize: 13.0,
     fontWeight: FontWeight.bold,
-    color: Colors.black.withOpacity(0.7));
+    color: Colors.black.withOpacity(0.5));

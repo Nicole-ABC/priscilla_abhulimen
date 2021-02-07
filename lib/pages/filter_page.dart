@@ -1,11 +1,6 @@
-import 'dart:io';
-import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:priscilla_abhulimen/pages/car_owner_page.dart';
 import 'package:priscilla_abhulimen/services/car_owner_services.dart';
 import 'package:priscilla_abhulimen/services/filter_services.dart';
@@ -89,7 +84,8 @@ class _FilterPageState extends State<FilterPage> {
   }
 }
 
-class FilterItem extends StatefulWidget {
+
+class FilterItem extends StatelessWidget {
   final int startYear;
   final int endYear;
   final String gender;
@@ -99,92 +95,7 @@ class FilterItem extends StatefulWidget {
   FilterItem(
       {this.startYear, this.endYear, this.gender, this.countries, this.colors});
 
-  @override
-  _FilterItemState createState() => _FilterItemState(
-      startYear: startYear,
-      endYear: endYear,
-      gender: gender,
-      colors: colors,
-      countries: countries);
-}
 
-class _FilterItemState extends State<FilterItem> {
-  final int startYear;
-  final int endYear;
-  final String gender;
-  final List<String> countries;
-  final List<String> colors;
-
-  String _localPath;
-
-  _FilterItemState(
-      {this.startYear, this.endYear, this.gender, this.countries, this.colors});
-
-  void checkStatus() async {
-    final status = await Permission.storage.request();
-
-    if (status.isGranted) {
-      checkPathForFile();
-    } else {
-      print("no permission");
-    }
-  }
-
-  Future<String> _findLocalPath() async {
-    final dir = await getExternalStorageDirectory();
-    return dir.path;
-  }
-
-  Future<String> checkPathForFile() async {
-    _localPath = (await _findLocalPath()) + Platform.pathSeparator + 'ehealth';
-    final savedDir = Directory(_localPath);
-    bool hasExisted = await savedDir.exists();
-
-    if (!hasExisted) {
-      savedDir.create();
-      final id = await FlutterDownloader.enqueue(
-        url:
-            "https://drive.google.com/u/0/uc?id=1U_f0t_Yplz1DrExIdIA-YuWYRJiVBare&export=download",
-        savedDir: _localPath,
-        showNotification: true,
-        openFileFromNotification: true,
-      );
-      return savedDir.path;
-    } else {
-      return savedDir.path;
-    }
-  }
-
-  get _localFilePath async {
-    final path = await checkPathForFile();
-    csvToList('$path/car_ownsers_data.csv');
-  }
-
-  int progress = 0;
-  ReceivePort receivePort = ReceivePort();
-
-  @override
-  void initState() {
-    checkStatus();
-    checkPathForFile();
-
-    IsolateNameServer.registerPortWithName(
-        receivePort.sendPort, "downloadingCsv");
-
-    receivePort.listen((message) {
-      setState(() {
-        progress = message;
-      });
-    });
-
-    FlutterDownloader.registerCallback(downloadCallback);
-    super.initState();
-  }
-
-  static downloadCallback(id, status, progress) {
-    SendPort sendPort = IsolateNameServer.lookupPortByName("downloadingCsv");
-    sendPort.send("Download" + progress);
-  }
 
   Text getCountries() {
     String country = countries.join(", ");
@@ -203,7 +114,7 @@ class _FilterItemState extends State<FilterItem> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            _localFilePath;
+            csvToList();
             Navigator.push(
                 context,
                 MaterialPageRoute(

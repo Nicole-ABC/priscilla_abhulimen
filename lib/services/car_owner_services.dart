@@ -1,14 +1,13 @@
-import 'dart:io';
-import 'dart:async';
+
 
 import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
 import 'package:priscilla_abhulimen/models/carOwnerModel.dart';
 
-List<CarOwner> carOwnersList = new List<CarOwner>();
+List<CarOwner> carOwnersList = [];
 
-csvToList(String path) async{
-  final myData = await rootBundle.loadString(path);
+csvToList() async{
+  final myData = await rootBundle.loadString('assets/ehealth/car_ownsers_data.csv');
   List<List<dynamic>> csvList = CsvToListConverter().convert(myData);
   for(int i=1; i<csvList.length; i++){
     carOwnersList.add(

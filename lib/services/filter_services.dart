@@ -40,7 +40,5 @@ Future<List<CarOwner>> getFilteredCarOwners(int startYear, int endYear,
       }
     }
   }
-
-  print(filteredCarOwnerList.length);
   return filteredCarOwnerList;
 }

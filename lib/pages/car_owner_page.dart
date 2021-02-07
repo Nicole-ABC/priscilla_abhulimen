@@ -33,23 +33,43 @@ class _CarOwnerPageState extends State<CarOwnerPage> {
         body: FutureBuilder(
           future: getFilteredCarOwners(widget.startYear, widget.endYear, widget.gender, widget.countries, widget.colors),
           builder: (context, snapshot){
-            if(snapshot.hasError){
-              return Container(height:150.0 ,child: Center(child: Text('Oops, an error has occured.')));
-            } else if(!snapshot.hasData){
-              return Container(
-                height: 150.0,
-                child: Center(
-                  child: Text(
-                    "No data available for this filter",
-                    style: TextStyle(color: Colors.grey),
+            if(snapshot.connectionState == ConnectionState.done){
+              if(snapshot.hasError){
+                return Container(height:150.0 ,child: Center(child: Text('Oops, an error has occured.')));
+              } else if(!snapshot.hasData){
+                return Container(
+                  height: 150.0,
+                  child: Center(
+                    child: Text(
+                      "No data available for this filter",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                );
+              }
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) => Text('got snapshot'),
+              );
+            }
+            else{
+              return Center(
+                child: Container(
+                  height: 100.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                      Text(
+                        "Loading...",
+                        style: TextStyle(color: Colors.grey),
+                      )
+                    ],
                   ),
                 ),
               );
             }
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) => Text('got snapshot'),
-            );
           },
         ),
         headerSliverBuilder: (context, isOk) {

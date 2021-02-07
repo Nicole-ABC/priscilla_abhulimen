@@ -36,6 +36,7 @@ class _CarOwnerPageState extends State<CarOwnerPage> {
   _CarOwnerPageState(
       {this.startYear, this.endYear, this.genders, this.countries, this.colors});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,13 +150,31 @@ class CarOwnerItem extends StatelessWidget {
     this.bio
   });
 
+  displayDialog(BuildContext context){
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+          title: new Text("Bio"),
+          content: new Text("$bio"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Done'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         InkWell(
-          onTap: (){},
+          onTap: () => displayDialog(context),
           child: Container(
             margin: EdgeInsets.only(left: 8.0),
             height: 200.0,
@@ -195,8 +214,15 @@ class CarOwnerItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextS,
                   ),
-                  Container(
-
+                  Center(
+                    child: Container(
+                      child: Text(
+                        'Tap to view bio',
+                        style: TextStyle(
+                          color: Colors.grey
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),

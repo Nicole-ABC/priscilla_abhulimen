@@ -18,9 +18,14 @@ Future<List<Filter>> getFilters() async {
 
 Future<List<CarOwner>> getFilteredCarOwners(int startYear, int endYear,
     String gender, List<String> countries, List<String> colors) async {
+  List<CarOwner> carOwnersList = await csvToList();
   List<CarOwner> filteredCarOwnerList = [];
   CarOwner carOwner = CarOwner();
+
+
   for(int i=0; i<carOwnersList.length; i++){
+    carOwner = carOwnersList[i];
+
     if(carOwner.carModelYear >= startYear && carOwner.carModelYear <= endYear){
       if(gender != "" && carOwner.gender.toLowerCase() == gender){
         if(countries.isNotEmpty){
@@ -30,15 +35,87 @@ Future<List<CarOwner>> getFilteredCarOwners(int startYear, int endYear,
                 for(int k=0; k<colors.length; k++){
                   if(colors[k] == carOwner.carColor){
                     filteredCarOwnerList.add(carOwner);
-
+                  }
+                  else{
+                    return filteredCarOwnerList;
                   }
                 }
               }
+              else{
+                return filteredCarOwnerList;
+              }
+            }
+            else if(colors.isNotEmpty){
+              for(int k=0; k<colors.length; k++){
+                if(colors[k] == carOwner.carColor){
+                  filteredCarOwnerList.add(carOwner);
+                }
+                else{
+                  return filteredCarOwnerList;
+                }
+              }
+            }
+            else{
+              return filteredCarOwnerList;
             }
           }
         }
+        else if(colors.isNotEmpty){
+          for(int k=0; k<colors.length; k++){
+            if(colors[k] == carOwner.carColor){
+              filteredCarOwnerList.add(carOwner);
+            }
+            else {
+              return filteredCarOwnerList;
+            }
+          }
+        }
+        else{
+          return filteredCarOwnerList;
+        }
+      }
+      else if(gender == ""){
+        if(countries.isNotEmpty){
+          for(int j=0; i<countries.length; i++){
+            if(countries[j] == carOwner.country){
+              if(colors.isNotEmpty){
+                for(int k=0; k<colors.length; k++){
+                  if(colors[k] == carOwner.carColor){
+                    filteredCarOwnerList.add(carOwner);
+
+                  }
+                  else{
+                    return filteredCarOwnerList;
+                  }
+                }
+              }
+              else{
+                return filteredCarOwnerList;
+              }
+            }
+            else{
+              return filteredCarOwnerList;
+            }
+          }
+        }
+        else if(colors.isNotEmpty){
+            for(int k=0; k<colors.length; k++){
+              if(colors[k] == carOwner.carColor){
+                filteredCarOwnerList.add(carOwner);
+
+              }
+            }
+          }
+        else{
+            return filteredCarOwnerList;
+        }
+
+      }
+      else {
+        return filteredCarOwnerList;
       }
     }
   }
+  print(filteredCarOwnerList.length);
   return filteredCarOwnerList;
 }

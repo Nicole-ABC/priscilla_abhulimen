@@ -4,9 +4,9 @@ import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
 import 'package:priscilla_abhulimen/models/carOwnerModel.dart';
 
-List<CarOwner> carOwnersList = [];
 
-csvToList() async{
+Future<List<CarOwner>> csvToList() async{
+  List<CarOwner> carOwnersList = [];
   final myData = await rootBundle.loadString('assets/ehealth/car_ownsers_data.csv');
   List<List<dynamic>> csvList = CsvToListConverter().convert(myData);
   for(int i=1; i<csvList.length; i++){
@@ -26,5 +26,5 @@ csvToList() async{
       )
     );
   }
-  print(carOwnersList.length);
+  return carOwnersList;
 }

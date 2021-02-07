@@ -31,10 +31,10 @@ class _CarOwnerPageState extends State<CarOwnerPage> {
     return Scaffold(
       body: NestedScrollView(
         body: FutureBuilder(
-          future: getFilteredCarOwners(startYear, endYear, gender, countries, colors),
+          future: getFilteredCarOwners(widget.startYear, widget.endYear, widget.gender, widget.countries, widget.colors),
           builder: (context, snapshot){
             if(snapshot.hasError){
-              return Text('Oops, an error has occured.');
+              return Container(height:150.0 ,child: Center(child: Text('Oops, an error has occured.')));
             } else if(!snapshot.hasData){
               return Container(
                 height: 150.0,

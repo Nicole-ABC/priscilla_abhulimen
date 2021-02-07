@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:priscilla_abhulimen/pages/car_owner_page.dart';
-import 'package:priscilla_abhulimen/services/car_owner_services.dart';
 import 'package:priscilla_abhulimen/services/filter_services.dart';
 
 class FilterPage extends StatefulWidget {
@@ -114,7 +113,6 @@ class FilterItem extends StatelessWidget {
       children: <Widget>[
         InkWell(
           onTap: () {
-            csvToList();
             Navigator.push(
                 context,
                 MaterialPageRoute(

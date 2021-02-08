@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new MaterialApp(
-      title: 'Freelance Developer Assessment',
+      title: 'Priscilla Abhulimen',
       home: new HomePage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

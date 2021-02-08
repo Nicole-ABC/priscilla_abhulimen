@@ -2,7 +2,7 @@
 
 import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
-import 'package:priscilla_abhulimen/models/carOwnerModel.dart';
+import 'package:priscilla_abhulimen/models/car_owner_model.dart';
 
 
 Future<List<CarOwner>> csvToList() async{

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:priscilla_abhulimen/models/carOwnerModel.dart';
+import 'package:priscilla_abhulimen/models/car_owner_model.dart';
 import 'package:priscilla_abhulimen/services/filter_services.dart';
 
 void main() {

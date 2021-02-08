@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:priscilla_abhulimen/models/carOwnerModel.dart';
+import 'package:priscilla_abhulimen/models/car_owner_model.dart';
 import 'dart:async';
-import 'package:priscilla_abhulimen/models/filterModel.dart';
+import 'package:priscilla_abhulimen/models/filter_model.dart';
 import 'package:priscilla_abhulimen/services/car_owner_services.dart';
 
 String url = "https://run.mocky.io/v3/b4cdeed3-327b-4591-9b06-aaf043e65497";

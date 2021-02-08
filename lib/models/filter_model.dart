@@ -2,7 +2,6 @@
 //
 //     final filter = filterFromJson(jsonString);
 
-import 'dart:convert';
 
 List<Filter> filterFromJson(var str) =>
     List<Filter>.from(str.map((x) => Filter.fromJson(x)));

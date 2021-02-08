@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:priscilla_abhulimen/pages/filter_page.dart';
 
-void main() async {
+void main() {
   runApp(MyApp());
 }
 

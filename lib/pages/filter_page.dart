@@ -162,4 +162,4 @@ class FilterItem extends StatelessWidget {
 
 TextStyle TextS = TextStyle(
     fontSize: 13.0,
-    color: Colors.black.withOpacity(0.5));
+    color: Colors.black.withOpacity(0.7));
